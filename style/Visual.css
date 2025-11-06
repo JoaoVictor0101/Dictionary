@@ -10,6 +10,11 @@ body {
   align-items: center;
 }
 
+.TittleStyle{
+  display: flex;
+  
+}
+
 .top-bar {
   display: flex;
   align-items: center;
@@ -36,7 +41,10 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #d3d3d3;
-  padding: 30px;
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
   border-radius: 15px;
   width: 400px;
   height: 400px;
@@ -52,7 +60,19 @@ body {
   margin-bottom: 5px;
 }
 
+
 .meaningContainerStyle{
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  width:auto; 
+  height: auto;
+}
+
+.Examples{
+  margin-top: 10px;
+  font-style: italic;
+}
+.def{
+  margin-top: 15px;
+  
 }

@@ -5,9 +5,10 @@ let contentContainer = document.getElementById("contentContainer")
 const audioDIv = document.getElementById("audioDiv");
 let dictionaryLayout= document.getElementById("dictionaryLayout");
 let ioi= document.getElementById("ioi");
+let ContinerCard = document.getElementById("containerCard")
 
 let track = 0
-var api = "https:api.dictionaryapi.dev/api/v2/entries/en/"
+var api = "https://freedictionaryapi.com/api/v1/entries/en/"
 // var api2 ="https:random-word-api.herokuapp.com/word?number=1"
 // //why the toLowerCase() didn''t work
 // async function getRandomWord() {
@@ -23,30 +24,79 @@ var api = "https:api.dictionaryapi.dev/api/v2/entries/en/"
 // window.onload = getRandomWord  //how it works?
 
 async function searchMeaning(){
-    // settle some condition for words that doesn't exist
-    ioi.innerHTML=""
+    // settling some condition for words that doesn't exist
+    
     
     let getTheWord = SearchBar.value.toLowerCase();
     const response = await fetch(`${api}${getTheWord}`);
+    const data = await response.json()
+    console.log(data)
     // console.log(getTheWord);
-    if (!response.ok){
+    //trying an array check
+    if (data.source.url == "https://en.wiktionary.org"){
         alert("type a word");
+        
+
     }else{
-        let titleMeanings = document.createElement("div");
+        ioi.innerHTML=""
+        let titleMeanings = document.createElement("h1");
         ioi.appendChild(titleMeanings);
+        titleMeanings.classList="TittleStyle"
+        let Ipa = document.createElement("p");
+        Ipa.textContent="mmadka"
+        ioi.appendChild(Ipa)
         let meanings1 = document.createElement('div');
         ioi.appendChild(meanings1);
         meanings1.classList="meaningContainerStyle";
         ioi.classList.add("card");
-        titleMeanings.textContent = SearchBar.value;
+        titleMeanings.textContent = SearchBar.value.toLowerCase();
        
-        
+        //trying to unsderstand and adjusting that to another api
+
+        //   let pickingOneItem = data.entries
+       //   console.log(pickingOneItem);
+       // console.log(data)
+       // const allMeanings = [];
         try{ 
-            const allMeanings = [];
             
-         const data = await response.json()
-         console.log(data)
+         
+
+        // console.log(data.entries)
+        const allMeanings = []
+
+        data.entries.forEach(element=>{
+            element.senses.forEach(senses => {
+                allMeanings.push({
+                    definitions: `<div class="def">${senses.definition}</div>`,
+                    examples: `<div class="Examples">${senses.examples}</div>`
+                })
+                })
+                
+            });
+            const ipo = []
+
+           
+
+            data.entries.forEach(elemente=>{
+                elemente.pronunciations.forEach(pronunce =>{
+                    ipo.push({
+                        pronunciations:pronunce.text
+                    })
+                })
+               
+            })
+            ipo.splice(1,4)
+        console.log(ipo)
+        const ConversionIpa = JSON.stringify(ipo)
+        Ipa.textContent=ConversionIpa
+        .replace(/[":,{}\[\]]/g, '')
+        console.log(ConversionIpa)
+        //Ipa.textContent= ConversionIpa
         
+
+         
+        /*      
+  ancient api
          data.forEach(element => {
              const meaning = element.meanings.forEach(meanings => {
                 meanings.definitions.forEach(def => {
@@ -57,15 +107,26 @@ async function searchMeaning(){
                 });
              });;
             });
+// fixing some erros of format and the spaces of the bar 
 
-          const coversion = JSON.stringify(allMeanings);
-        
-        
-          meanings1.innerHTML= coversion.replace(/[{}\[\]]/g,'');
+*/
+  // how could i change the font of examples?
+          const coversion = JSON.stringify(allMeanings)      
+        // trying to understand how works the replace method
+            meanings1.innerHTML = coversion
+            .replace(/[":,{}\[\]]/g, '')
+            .replace(/\\/g, "")
+            .replace(/definitions/g, "")
+            .replace(/examples/g, "")
+                         
 
+            console.log(meanings1)
+        // meanings1.innerHTML= coversion.replace(/[{}\[\]\,\"]/g,'')
+        // meanings1.innerHTML.replace(/\. ?/g,'<br> <br>')
+        
        }catch(e){
 
-            console.log(e.message);
+            //console.log(e.message);
         
         }
     }
