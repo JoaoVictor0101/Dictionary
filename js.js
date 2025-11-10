@@ -43,6 +43,7 @@ async function searchMeaning(){
         ioi.appendChild(titleMeanings);
         titleMeanings.classList="TittleStyle"
         let Ipa = document.createElement("p");
+        Ipa.classList.add("IpaStyle")
         Ipa.textContent="mmadka"
         ioi.appendChild(Ipa)
         let meanings1 = document.createElement('div');
@@ -65,8 +66,10 @@ async function searchMeaning(){
         const allMeanings = []
 
         data.entries.forEach(element=>{
+             
             element.senses.forEach(senses => {
                 allMeanings.push({
+                    partOfSpeech: element.partOfSpeech,
                     definitions: `<div class="def">${senses.definition}</div>`,
                     examples: `<div class="Examples">${senses.examples}</div>`
                 })
@@ -85,11 +88,13 @@ async function searchMeaning(){
                 })
                
             })
-            ipo.splice(1,4)
+            // finding a way to remove all the ipas after of the first one
+            ipo.splice(1)
         console.log(ipo)
         const ConversionIpa = JSON.stringify(ipo)
         Ipa.textContent=ConversionIpa
         .replace(/[":,{}\[\]]/g, '')
+        .replace(/pronunciations/g, "")
         console.log(ConversionIpa)
         //Ipa.textContent= ConversionIpa
         
@@ -118,6 +123,7 @@ async function searchMeaning(){
             .replace(/\\/g, "")
             .replace(/definitions/g, "")
             .replace(/examples/g, "")
+            .replace(/partOfSpeech/g, "")
                          
 
             console.log(meanings1)

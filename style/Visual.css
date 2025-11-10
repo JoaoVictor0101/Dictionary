@@ -12,6 +12,7 @@ body {
 
 .TittleStyle{
   display: flex;
+  height: 0px;
   
 }
 
@@ -45,13 +46,11 @@ body {
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 30px;
-  border-radius: 15px;
+  border-radius: 45px;
   width: 400px;
   height: 400px;
   text-align: left;
-  overflow: scroll;
-  overflow-x: hidden;
-
+ 
 }
 
 .card-title {
@@ -66,13 +65,29 @@ body {
   flex-direction: column;
   width:auto; 
   height: auto;
+  overflow-y:auto;
+}
+::-webkit-scrollbar{
+  width: 10px;
+
+}
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 25px;
+  
 }
 
 .Examples{
   margin-top: 10px;
+  margin-bottom: 10px;
   font-style: italic;
 }
 .def{
-  margin-top: 15px;
+  margin-top: 10px;
   
 }
+.IpaStyle{
+  
+  font-style: italic;
+}
+
