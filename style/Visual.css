@@ -34,7 +34,7 @@ body {
   width: 60px;
   height: 30px;
   border: 1px solid black;
-  border-radius: 10%;
+  border-radius: 10px;
 }
 
 
@@ -59,7 +59,6 @@ body {
   margin-bottom: 5px;
 }
 
-
 .meaningContainerStyle{
   display: flex;
   flex-direction: column;
@@ -77,6 +76,17 @@ body {
   
 }
 
+.LabelDefinition{
+  width: 70px;
+  height: 20px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+
 .Examples{
   margin-top: 10px;
   margin-bottom: 10px;
@@ -87,7 +97,10 @@ body {
   
 }
 .IpaStyle{
-  
+  height: 10px;
   font-style: italic;
+}
+.partsOfSpeechStyle{
+font-style: italic;
 }
 

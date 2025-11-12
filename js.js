@@ -27,30 +27,34 @@ async function searchMeaning(){
     // settling some condition for words that doesn't exist
     
     
-    let getTheWord = SearchBar.value.toLowerCase();
+    let getTheWord = SearchBar.value.trim().toLowerCase();
     const response = await fetch(`${api}${getTheWord}`);
     const data = await response.json()
     console.log(data)
     // console.log(getTheWord);
     //trying an array check
-    if (data.source.url == "https://en.wiktionary.org"){
+    if (data.source.url == "https://en.wiktionary.org" ){
         alert("type a word");
         
 
     }else{
-        ioi.innerHTML=""
+        ioi.innerHTML="";
         let titleMeanings = document.createElement("h1");
         ioi.appendChild(titleMeanings);
-        titleMeanings.classList="TittleStyle"
+        titleMeanings.classList="TittleStyle";
         let Ipa = document.createElement("p");
-        Ipa.classList.add("IpaStyle")
-        Ipa.textContent="mmadka"
-        ioi.appendChild(Ipa)
+        Ipa.classList.add("IpaStyle");
+        ioi.appendChild(Ipa);
+        let LabelDefinition = document.createElement("button");
+        LabelDefinition.textContent="Definition";
+         ioi.appendChild(LabelDefinition);
+        LabelDefinition.classList.add("LabelDefinition");
         let meanings1 = document.createElement('div');
         ioi.appendChild(meanings1);
         meanings1.classList="meaningContainerStyle";
         ioi.classList.add("card");
-        titleMeanings.textContent = SearchBar.value.toLowerCase();
+        titleMeanings.textContent = getTheWord;
+        console.log(titleMeanings);
        
         //trying to unsderstand and adjusting that to another api
 
@@ -69,7 +73,7 @@ async function searchMeaning(){
              
             element.senses.forEach(senses => {
                 allMeanings.push({
-                    partOfSpeech: element.partOfSpeech,
+                    partOfSpeech: `<div class="partsOfSpeechStyle">${element.partOfSpeech}</div>`,
                     definitions: `<div class="def">${senses.definition}</div>`,
                     examples: `<div class="Examples">${senses.examples}</div>`
                 })
