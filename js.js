@@ -46,7 +46,7 @@ async function searchMeaning(){
         Ipa.classList.add("IpaStyle");
         ioi.appendChild(Ipa);
         let LabelDefinition = document.createElement("button");
-        LabelDefinition.textContent="Definition";
+        LabelDefinition.textContent="Definitions";
          ioi.appendChild(LabelDefinition);
         LabelDefinition.classList.add("LabelDefinition");
         let meanings1 = document.createElement('div');
@@ -73,9 +73,9 @@ async function searchMeaning(){
              
             element.senses.forEach(senses => {
                 allMeanings.push({
-                    partOfSpeech: `<div class="partsOfSpeechStyle">${element.partOfSpeech}</div>`,
+                    partOfSpeech: `<div class="partsOfSpeechStyle">• ${element.partOfSpeech}</div>`,
                     definitions: `<div class="def">${senses.definition}</div>`,
-                    examples: `<div class="Examples">${senses.examples}</div>`
+                    examples: `<div class="Examples" id="ExamplesId"> ${senses.examples}</div>`
                 })
                 })
                 
@@ -94,7 +94,7 @@ async function searchMeaning(){
             })
             // finding a way to remove all the ipas after of the first one
             ipo.splice(1)
-        console.log(ipo)
+        console.log(allMeanings)
         const ConversionIpa = JSON.stringify(ipo)
         Ipa.textContent=ConversionIpa
         .replace(/[":,{}\[\]]/g, '')
@@ -123,14 +123,23 @@ async function searchMeaning(){
           const coversion = JSON.stringify(allMeanings)      
         // trying to understand how works the replace method
             meanings1.innerHTML = coversion
-            .replace(/[":,{}\[\]]/g, '')
+            .replace(/[",:{}\[\]]/g, '')
             .replace(/\\/g, "")
             .replace(/definitions/g, "")
             .replace(/examples/g, "")
             .replace(/partOfSpeech/g, "")
+
+            
+        const catchingtheExamples= document.getElementById("ExamplesId");
+
+        catchingtheExamples.innerHTML = catchingtheExamples.innerHTML
+        .replace(/(?<=[.!?])(?=\w)/gm, "<br><br>")
+        
+
+        console.log(catchingtheExamples)
                          
 
-            console.log(meanings1)
+            console.log(allMeanings)
         // meanings1.innerHTML= coversion.replace(/[{}\[\]\,\"]/g,'')
         // meanings1.innerHTML.replace(/\. ?/g,'<br> <br>')
         
