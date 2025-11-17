@@ -130,14 +130,15 @@ async function searchMeaning(){
             .replace(/partOfSpeech/g, "")
 
             
-        const catchingtheExamples= document.getElementById("ExamplesId");
+        const catchingtheExamples= document.querySelectorAll('#ExamplesId');
 
-        catchingtheExamples.innerHTML = catchingtheExamples.innerHTML
-        .replace(/(?<=[.!?])(?=\w)/gm, "<br><br>")
+        catchingtheExamples.forEach(examples=>{
+            examples.innerHTML = examples.innerHTML.replace(/(?<=[.!?])(?=\w)/gm, "<br><br>")
+            .replace(/(?<=[.])(?=\s)/gm, "<br><br>")
+            
+        })
         
-
-        console.log(catchingtheExamples)
-                         
+        
 
             console.log(allMeanings)
         // meanings1.innerHTML= coversion.replace(/[{}\[\]\,\"]/g,'')

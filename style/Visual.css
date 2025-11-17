@@ -89,11 +89,12 @@ body {
 
 .Examples{
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-style: italic;
 }
 .def{
   margin-top: 10px;
+  margin-bottom: 5px;
   
 }
 .IpaStyle{
@@ -102,5 +103,6 @@ body {
 }
 .partsOfSpeechStyle{
 font-style: italic;
+
 }
 
