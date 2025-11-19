@@ -10,6 +10,16 @@ body {
   align-items: center;
 }
 
+.dictionaryTitle{
+  display: flex;
+  align-items: center;
+  text-align: right;
+  margin-bottom: 0px;
+  height: 5px;
+  font-family: "STIX Two Text";
+  margin-right:20px;
+}
+
 .TittleStyle{
   display: flex;
   height: 0px;
@@ -18,16 +28,30 @@ body {
 
 .top-bar {
   display: flex;
+ background-color: black;
+ width: 270px;
+  height: 30px;
+  margin-top: 0px;
   align-items: center;
-  gap: 10px;
+  border-radius:20px;
+}
+.labelBar{
+  
+  color: white;
+  opacity: 0.5;
 }
 
 .small-input {
+  flex: 1;
+  margin-left: 20px;
   width: 200px;
   height: 20px;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 2px 6px;
+ border: none;
+  outline:none;
+  padding: 0px;
+  background-color:transparent;
+  color: white;
+ 
 }
 
 .button {
@@ -91,10 +115,13 @@ body {
   margin-top: 10px;
   margin-bottom: 20px;
   font-style: italic;
+  opacity: 0.8;
+  
 }
 .def{
   margin-top: 10px;
   margin-bottom: 5px;
+  font-weight: bold;
   
 }
 .IpaStyle{
